@@ -9,16 +9,30 @@ import { initUI } from './ui.js';
 
 const grid = document.getElementById('sudoku-grid');
 
+function getRemoveCountByDifficulty(difficulty) {
+  switch (difficulty) {
+    case 'easy': return 30;
+    case 'normal': return 40;
+    case 'hard': return 50;
+    case 'mega': return 60;
+    default: return 40;
+  }
+}
+
 function startNewGame() {
   grid.innerHTML = '';
   const board = createEmptyBoard();
   fillBoard(board);
   const solution = board.map(row => row.slice());
-  removeCells(board, 40);
+  const difficulty = document.getElementById('difficulty').value;
+  const removeCount = getRemoveCountByDifficulty(difficulty);
+  removeCells(board, removeCount);
   initUI(grid, solution, board);
 }
 
 document.getElementById('new-game').addEventListener('click', startNewGame);
+
+document.getElementById('difficulty').addEventListener('change', startNewGame);
 
 document.getElementById('clear').addEventListener('click', () => {
   // Очистить только незаблокированные клетки

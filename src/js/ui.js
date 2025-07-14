@@ -1,16 +1,35 @@
 let grid;
 let solution = [];
 let currentBoard = [];
+let lives = 3;
+let hints = 3;
 
 export function initUI(gridElement, solutionBoard, startingBoard) {
   grid = gridElement;
   solution = solutionBoard;
   currentBoard = startingBoard;
+  lives = 3;
+  hints = 3;
+  updateLivesDisplay();
+  updateHintButton();
 
   grid.innerHTML = '';
   createEmptyGrid();
   attachInputListeners();
   renderBoard();
+}
+
+function updateLivesDisplay() {
+  const livesDiv = document.getElementById('lives');
+  livesDiv.textContent = '❤️'.repeat(lives);
+}
+
+function updateHintButton() {
+  const hintBtn = document.getElementById('hint');
+  if (hintBtn) {
+    hintBtn.textContent = `Подсказка (${hints})`;
+    hintBtn.disabled = hints <= 0;
+  }
 }
 
 function createEmptyGrid() {
@@ -80,8 +99,17 @@ function onCellInput(e) {
 
   if (num === solution[row][col]) {
     cell.classList.remove('error');
+    // Проверка на победу
+    if (isWin()) {
+      setTimeout(() => showModal('win'), 300);
+    }
   } else {
     cell.classList.add('error');
+    lives--;
+    updateLivesDisplay();
+    if (lives <= 0) {
+      setTimeout(() => showModal('lose'), 300);
+    }
   }
 }
 
@@ -103,4 +131,50 @@ function onCellBlur() {
   grid.querySelectorAll('.cell').forEach(cell => {
     cell.classList.remove('highlight');
   });
+}
+
+function showModal(type) {
+  const modal = document.getElementById('modal');
+  const title = document.getElementById('modal-title');
+  if (type === 'win') {
+    title.textContent = 'Поздравляем! Вы решили судоку!';
+  } else {
+    title.textContent = 'Вы проиграли! Попробуйте снова.';
+  }
+  modal.classList.remove('hidden');
+}
+
+document.getElementById('modal-btn').addEventListener('click', () => {
+  document.getElementById('modal').classList.add('hidden');
+  document.getElementById('new-game').click();
+});
+
+document.getElementById('hint').addEventListener('click', () => {
+  if (hints <= 0) return;
+  // Собираем все пустые клетки
+  const emptyCells = [];
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (currentBoard[row][col] === 0) {
+        emptyCells.push({ row, col });
+      }
+    }
+  }
+  if (emptyCells.length === 0) return;
+  // Выбираем случайную пустую клетку
+  const randomIndex = Math.floor(Math.random() * emptyCells.length);
+  const { row, col } = emptyCells[randomIndex];
+  currentBoard[row][col] = solution[row][col];
+  renderBoard();
+  hints--;
+  updateHintButton();
+});
+
+function isWin() {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (currentBoard[row][col] !== solution[row][col]) return false;
+    }
+  }
+  return true;
 }

@@ -30,3 +30,124 @@ button:active {
 .button__clear {
   background: linear-gradient(to right, #ef5350, #e53935);
 }
+
+.button__hint {
+  background: linear-gradient(to right, #ffd600, #ffb300);
+}
+
+.button__hint:disabled {
+  background: linear-gradient(to right, #e0e0e0, #bdbdbd);
+  color: #aaa;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.difficulty-select {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.difficulty-select label {
+  font-size: 4.4em;
+  color: #42a5f5;
+  font-weight: bold;
+  margin-right: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(66, 165, 245, 0.12);
+}
+
+.difficulty-select label {
+  font-size: 1.3em;
+  color: #333;
+  font-weight: 500;
+}
+
+.difficulty-select select {
+  padding: 8px 18px;
+  font-size: 1.15em;
+  border-radius: 6px;
+  border: 1px solid #42a5f5;
+  background: #f5faff;
+  color: #333;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.difficulty-select select:focus {
+  border: 2px solid #42a5f5;
+}
+
+.lives {
+  font-size: 2.2em;
+  color: #ef5350;
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 8px;
+  cursor: default;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 720px;
+  margin-bottom: 32px;
+}
+
+.top-bar .difficulty-select {
+  margin-bottom: 0;
+}
+
+.top-bar .lives {
+  margin-bottom: 0;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+}
+
+.modal:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 48px 64px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(66, 165, 245, 0.18);
+  transform: translateY(40px) scale(0.98);
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.modal:not(.hidden) .modal-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#modal-title {
+  font-size: 2.5em;
+  margin-bottom: 32px;
+  color: #42a5f5;
+}
+
+body.modal-open {
+  overflow: hidden;
+}

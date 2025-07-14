@@ -8,6 +8,21 @@
 <body>
   <h1>Судоку</h1>
 
+  <div class="top-bar">
+    <div class="difficulty-select">
+      <label for="difficulty">Сложность:</label>
+      <select id="difficulty">
+        <option value="easy">Легкий</option>
+        <option value="normal">Нормальный</option>
+        <option value="hard">Сложный</option>
+        <option value="mega">Мега-сложный</option>
+      </select>
+    </div>
+    <div class="lives" id="lives">
+      ❤️❤️❤️
+    </div>
+  </div>
+
   <div class="sudoku-grid" id="sudoku-grid">
     <!-- Сюда добавим ячейки через JS или вручную -->
   </div>
@@ -15,6 +30,14 @@
   <div class="buttons">
     <button id="new-game" class="button__new-game">Новая игра</button>
     <button id="clear" class="button__clear">Очистить</button>
+    <button id="hint" class="button__hint">Подсказка (3)</button>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modal-title"></h2>
+      <button id="modal-btn" class="button__new-game">Новая игра</button>
+    </div>
   </div>
 
   <script type="module" src="./src/js/main.js"></script>

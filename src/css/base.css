@@ -13,7 +13,7 @@ body {
   align-items: center;
   padding: 40px;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* запретить прокрутку */
 }
 
 h1 {
