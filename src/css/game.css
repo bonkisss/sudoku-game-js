@@ -1,0 +1,54 @@
+/* game.css */
+.cell {
+  width: 79px;
+  height: 79px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
+  border-radius: 4px;
+  caret-color: transparent;
+  cursor: default;
+}
+
+.cell.error {
+  animation: shake 0.2s;
+}
+
+.cell:focus {
+  border: 2px solid #4a90e2;
+  background-color: #eef7ff;
+  box-shadow: 0 0 5px #4a90e2;
+}
+
+.cell:hover {
+  background-color: #f0faff;
+}
+
+.prefilled {
+  background-color: #f0f0f0;
+  color: #555;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: #ffe5e5;
+  color: red;
+  border: 2px solid red;
+}
+
+.highlight {
+  background: linear-gradient(to right, #e3f2fd, #fce4ec);
+}
+
+.border-left {
+  border-left: 2px solid #333;
+}
+
+.border-top {
+  border-top: 2px solid #333;
+}

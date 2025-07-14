@@ -1,0 +1,32 @@
+/* components.css */
+button {
+  flex: 1 1 260px;
+  width: 280px;
+  padding: 21px 42px;
+  font-size: 1.75em;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #42a5f5, #478ed1);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+button:hover {
+  background: linear-gradient(to right, #42a5f5, #42a5f5);
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.button__new-game {
+  background: linear-gradient(to right, #42a5f5, #43a047);
+}
+
+.button__clear {
+  background: linear-gradient(to right, #ef5350, #e53935);
+}

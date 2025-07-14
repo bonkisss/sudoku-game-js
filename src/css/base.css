@@ -1,0 +1,23 @@
+/* base.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #e3f2fd, #fce4ec);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 4.4em;
+  margin-bottom: 52px;
+  color: #333;
+}
